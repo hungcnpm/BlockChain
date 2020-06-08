@@ -1,0 +1,24 @@
+<div class="container">
+	<h1>Các block của chuỗi</h1>
+	<p>Mỗi thẻ chứa một block trong chuỗi. Bấm vào block để xem những giao dịch được lưu trong block đó.</p>
+</div>
+
+<div class="container" style="overflow-x: scroll;white-space: nowrap;">
+	<app-block-view 
+		*ngFor="let block of blocks" 
+		[block]="block" 
+		[selectedBlock]="selectedBlock"
+		(click)="showTransactions(block)"
+	></app-block-view>
+</div>
+
+<br><br>
+
+<div class="container">
+	<h1>Những giao dịch có trong block {{ getBlockNumber(selectedBlock) }}</h1>
+
+	<app-transactions-table
+		[transactions]="selectedBlock.transactions"
+	></app-transactions-table>
+</div>
+

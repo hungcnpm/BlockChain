@@ -1,0 +1,29 @@
+<div class="container">
+	<h1>Chi tiết số dư</h1>
+
+	<p style="word-wrap:break-word;">
+		<strong>Địa chỉ ví:</strong>
+		<br>
+		{{walletAddress}}
+	</p>
+
+	<p>
+		<strong>Số dư:</strong>
+		<br>
+		{{ balance }}
+	</p>
+	<p>
+		<strong>Số dư có thể chuyển (sau khi trừ đi những giao dịch đang chờ xác nhận):</strong>
+		<br>
+		{{ balanceAfterPending }}
+	</p>
+
+	<hr>
+
+	<h1>Transactions</h1>
+	<p *ngIf="transactions.length === 0">This wallet has made no transactions (yet)</p>
+	<app-transactions-table
+		[transactions]="transactions"
+		*ngIf="transactions.length > 0"
+	></app-transactions-table>
+</div>

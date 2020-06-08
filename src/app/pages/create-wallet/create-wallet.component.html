@@ -1,0 +1,29 @@
+<div class="container">
+    <h1>Tạo ví</h1>
+    <p>Tạo một ví mới với khóa bí mật và khóa công khai</p>
+    <div class="alert alert-success" role="alert" *ngIf="isCreate">
+		Tạo ví thành công!
+	</div>
+    <br>
+    
+    <div>
+        <label >Khóa công khai</label>
+        <input class="form-control" id="miningRewards"  [(ngModel)]="WalletKey.publicKey" disabled>
+        <small id="miningRewardHelps" class="form-text text-muted">
+            Khóa công khai của bạn. (Mọi người đều có thể thấy nó)
+        </small>
+      </div>
+    <br>
+  
+    <div>
+      <label >Khóa bí mật</label>
+      <input class="form-control" id="miningReward"  [(ngModel)]="WalletKey.privateKey" disabled>
+      <small id="miningRewardHelp" class="form-text text-muted">
+          Khóa bí mật của bạn (Chỉ bạn có thể thấy. Hãy đảm bảo bạn không đánh mất nó)
+      </small>
+    </div>
+    <br>
+    
+    <button (click)="createWallet()" type="submit" class="btn btn-primary">Tạo ví mới</button>
+  
+  </div>

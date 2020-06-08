@@ -1,0 +1,48 @@
+<p *ngIf="transactions.length === 0">Block này không chứa giao dịch nào</p>
+
+<table class="table table-hover table-striped" *ngIf="transactions.length > 0">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Từ</th>
+      <th scope="col">Đến</th>
+      <th scope="col">Số coin</th>
+      <th scope="col">Thời gian</th>
+      <th scope="col">Tính xác thực</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tx of transactions; index as index">
+      <td>{{index}}</td>
+      <td class="text-truncate" style="max-width: 100px;">
+
+        <a [routerLink]="['/wallet', tx.fromAddress]" *ngIf="tx.fromAddress !== null">{{tx.fromAddress}}</a>
+
+        <span *ngIf="tx.fromAddress === null">Hệ thống</span>
+
+        <span class="text-muted" *ngIf="blockchainService.addressIsFromCurrentUser(tx.fromAddress)">
+          <br><small>(Đây là địa chỉ của bạn!)</small>
+        </span>
+      </td>
+      <td class="text-truncate" style="max-width: 100px;">
+          <a [routerLink]="['/wallet', tx.toAddress]">{{tx.toAddress}}</a>
+
+          <span class="text-muted" *ngIf="blockchainService.addressIsFromCurrentUser(tx.toAddress)">
+            <br><small>(Đây là địa chỉ của bạn!)</small>
+          </span>
+      </td>
+      <td>
+        {{tx.amount}}
+        <span *ngIf="tx.fromAddress === null" class="text-muted"><br><small>(Phần thưởng)</small></span>
+      </td>
+      <td>
+        {{tx.timestamp}}<br>
+        <span class="text-muted"><small>{{tx.timestamp |date:'MMM d, y, HH:mm'}}</small></span>
+      </td>
+      <td style="max-width: 40px;">
+        <span *ngIf="tx.isValid()">✓</span>
+        <span *ngIf="!tx.isValid()">✗</span>
+      </td>
+    </tr>
+  </tbody>
+</table>

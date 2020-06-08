@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Cài đặt</h1>
+  <p>Kiểm soát đồng tiền bằng cách thay đổi độ khó hoặc phần thưởng. Những thay đổi sẽ được lưu tự động</p>
+
+  <br>
+
+  <div class="form-group">
+    <label for="difficulty">Độ khó</label>
+    <input type="number" class="form-control" id="difficulty" aria-describedby="difficultyHelp" [(ngModel)]="blockchain.difficulty">
+    <small id="difficultyHelp" class="form-text text-muted">
+      Độ khó sẽ kiểm soát thời gian để xác nhận (đào) một block mới. Độ khó càng cao thì thời gian cần bỏ ra càng nhiều
+    	<br>Mặc định: 2
+    </small>
+  </div>
+
+  <br>
+
+  <div class="form-group">
+    <label for="miningReward">Phần thưởng</label>
+    <input type="number" class="form-control" id="miningReward" aria-describedby="miningRewardHelp" [(ngModel)]="blockchain.miningReward">
+    <small id="miningRewardHelp" class="form-text text-muted">
+		Số coin bạn sẽ nhận được nếu xác nhận (đào) xong một block mới
+		<br>Mặc định: 100
+    </small>
+  </div>
+
+</div>

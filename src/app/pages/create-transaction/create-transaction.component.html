@@ -1,0 +1,38 @@
+<div class="container">
+	<h1>Tạo giao dịch</h1>
+	<p>Chuyển tiền của bạn đến một ai đó!</p>
+
+	<br>
+
+	<div class="form-group">
+	    <label for="fromAddress">Chuyển từ</label>
+	    <input type="text" class="form-control" id="fromAddress" aria-describedby="fromAddressHelp" [(ngModel)]="ownWalletKey.publicKey" disabled>
+	    <small id="fromAddressHelp" class="form-text text-muted">
+	    	Đây là địa chỉ ví của bạn. Vì chỉ có thể chuyển tiền của mình nên bạn không thể thay đổi nó.
+	    </small>
+  	</div>
+
+  	<div class="form-group">
+		<label for="toAddress">Chuyển tới</label>
+		<!-- <input type="text" class="form-control" id="toAddress" aria-describedby="toAddressHelp" [(ngModel)]="newTx.toAddress"> -->
+		<select class="form-control" name="toAddress" id="toAddress" [(ngModel)]="newTx.toAddress">
+			<option *ngFor = "let wallet of toAddressWallet" >
+				{{wallet.publicKey}}
+			</option>
+		</select>
+	    <small id="toAddressHelp" class="form-text text-muted">
+	    	Đây là địa chỉ ví mà bạn sẽ chuyển tiền tới.
+	    </small>
+  	</div>
+
+  	<div class="form-group">
+	    <label for="amount">Số lượng</label>
+	    <input type="number" class="form-control" id="amount" aria-describedby="amountHelp" [(ngModel)]="newTx.amount">
+	    <small id="amountHelp" class="form-text text-muted">
+	    	Bạn có thể chuyển tiền trong ví của mình. Bạn không thể chuyển nếu ví không đủ tiền hoặc số tiền bạn đang chờ xác nhận đã bằng với số tiền trong ví.
+	    </small>
+  	</div>
+
+  	<button (click)="createTransaction()" type="submit" class="btn btn-primary">Ký và chuyển tiền</button>
+
+</div>
