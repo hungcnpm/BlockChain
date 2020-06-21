@@ -23,17 +23,16 @@ export class BlockchainService {
   addressIsFromCurrentUser(address) {
     return address === this.walletKeys[0].publicKey;
   }
-
+  
   generateWalletKeys() {
-    const ec = new EC.ec('secp256k1');
-    const key = ec.genKeyPair();
-
-    this.walletKeys.push({
-      keyObj: key,
-      publicKey: key.getPublic('hex'),
-      privateKey: key.getPrivate('hex'),
-    });
-
+      const ec = new EC.ec('secp256k1');
+      const key = ec.genKeyPair();
+      
+      this.walletKeys.push({
+        keyObj: key,
+        publicKey: key.getPublic('hex'),
+        privateKey: key.getPrivate('hex'),
+      });
     console.log(this.walletKeys);
   }
 

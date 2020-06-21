@@ -178,24 +178,29 @@ class Blockchain {
    */
   addTransaction(transaction) {
     if (!transaction.fromAddress || !transaction.toAddress) {
-      throw new Error('Transaction must include from and to address');
+      throw new Error('Giao dịch phải có địa chỉ của người gủi và người nhận');
     }
 
     // Verify the transactiion
     if (!transaction.isValid()) {
-      throw new Error('Cannot add invalid transaction to chain');
+      throw new Error('Giao dịch không hợp lệ');
     }
     
     if (transaction.amount <= 0) {
-      throw new Error('Transaction amount should be higher than 0');
+      throw new Error('Số lượng phải lớn hơn 0');
     }
+    if(transaction.amount == null)
+      throw new Error('Số lượng không được để trống');
 
     this.pendingTransactions.push(transaction);
   }
-  checkBalance(adress, transAmount){
+  checkPendingBalance(adress){
     let balance = this.getBalanceOfAddress(adress);
+    return balance - this.getBalanceOfPendingAddress(adress);
+  }
+  checkBalance(adress, transAmount){
+    let balance = this.checkPendingBalance(adress);
     balance -= transAmount;
-    balance -= this.getBalanceOfPendingAddress(adress);
     return balance;
   }
   /**

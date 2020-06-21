@@ -18,6 +18,7 @@ export class CreateTransactionComponent implements OnInit {
     this.newTx = new Transaction();
     this.ownWalletKey = blockchainService.walletKeys[0];
     this.toAddressWallet = blockchainService.walletKeys;
+    
   }
 
   ngOnInit() {
@@ -31,20 +32,25 @@ export class CreateTransactionComponent implements OnInit {
     newTx.signTransaction(this.ownWalletKey.keyObj);
 
     try {
-      let balance = this.blockchainService.blockchainInstance.checkBalance(newTx.fromAddress, newTx.amount);
+      let balance = this.blockchainService.blockchainInstance.checkPendingBalance(newTx.fromAddress);
       console.log(balance); 
-      if(balance < 0){
-        alert("Số dư không đủ hoặc số coin bạn đang chờ xác nhận đã bằng với số dư ví của bạn"); 
+      if(balance == 0){
+        alert("Số coin bạn đang chờ xác nhận đã bằng số với số dư.");
+        return; 
       }
-      else if(newTx.toAddress === this.ownWalletKey.publicKey)
+      balance = this.blockchainService.blockchainInstance.checkBalance(newTx.fromAddress, newTx.amount);
+      if(balance < 0){
+        alert("Số dư không đủ");
+        return; 
+      }
+      if(newTx.toAddress === this.ownWalletKey.publicKey)
       {
         alert("Bạn không thể gửi coin cho chính mình");
+        return;
       }
-      else
-       {
-        this.blockchainService.addTransaction(this.newTx);
-        this.canCreate =  true;
-       }
+      this.blockchainService.addTransaction(this.newTx);
+      this.canCreate =  true;
+       
     } catch (e) {
       alert(e);
       return;

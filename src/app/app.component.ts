@@ -8,10 +8,12 @@ import { BlockchainService } from './services/blockchain.service';
 })
 export class AppComponent implements OnInit {
   public blockchain;
+  public ownWalletKey;
   public showInfoMessage = true;
 
   constructor(private blockchainService: BlockchainService) {
     this.blockchain = blockchainService.blockchainInstance;
+    this.ownWalletKey = blockchainService.walletKeys[0].publicKey;
   }
 
   ngOnInit() {
