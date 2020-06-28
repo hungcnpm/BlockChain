@@ -2,12 +2,12 @@
 ---
 
 ### Mục lục:
-- [Project Function](#ProjectFunction)
+- [Project Function](#Project%20Function)
 - [Descirption](#Description)
 - [Technology](#Technology)
 - [Installation](#Installation)
 ---
-### ProjectFunction
+### Project Function
 - Tạo ví
 - Tạo giao dịch
 - Chỉnh sửa độ khó và phần thưởng của thợ đào
