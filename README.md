@@ -18,7 +18,7 @@
 ## Description
 Đây là một project mô tả cách block chain mà cụ thể hơn là một đồng tiền điện tử hoạt động
 ---
-## Technology
+## Technology and tools
 - Angular
 - Node
 - JavaScript
