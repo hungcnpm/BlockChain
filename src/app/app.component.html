@@ -1,30 +1,33 @@
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" routerLink="/">
-    &nbsp;Coin Demo
-  </a>
+    <a class="navbar-brand" routerLink="/">
+        &nbsp;Coin Demo
+    </a>
 
-  <div>
-    <button routerLink="/new/transaction/pending" class="btn btn-outline-dark" *ngIf="thereArePendingTransactions()">
-      Giao dịch đang chờ
-      <span class="badge badge-light">{{blockchain.pendingTransactions.length}}</span>
-    </button>
-    &nbsp;
-    <button routerLink="/new/wallet" class="btn btn-outline-dark">
-      Tạo ví
-    </button>
-    &nbsp;
-    <button [routerLink]="['/wallet', ownWalletKey]" class="btn btn-outline-dark">
-      Xem số dư
-    </button>
-    &nbsp;
-    <button routerLink="/settings" class="btn btn-outline-dark">
-      Cài đặt
-    </button>
-    &nbsp;
-    <button routerLink="/new/transaction" class="btn btn-outline-dark">
-      Tạo giao dịch
-    </button>
-  </div>
+    <div>
+        <button routerLink="/new/transaction/pending"
+                class="btn btn-outline-dark"
+                *ngIf="thereArePendingTransactions()">
+            Giao dịch đang chờ
+            <span class="badge badge-light">{{blockchain.pendingTransactions.length}}</span>
+        </button>
+        &nbsp;
+        <button routerLink="/new/wallet" class="btn btn-outline-dark">
+            Tạo ví
+        </button>
+        &nbsp;
+        <button [routerLink]="['/wallet', ownWalletKey]"
+                class="btn btn-outline-dark">
+            Xem số dư
+        </button>
+        &nbsp;
+        <button routerLink="/settings" class="btn btn-outline-dark">
+            Cài đặt
+        </button>
+        &nbsp;
+        <button routerLink="/new/transaction" class="btn btn-outline-dark">
+            Tạo giao dịch
+        </button>
+    </div>
 </nav>
 
 <br>
